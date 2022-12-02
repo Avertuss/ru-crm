@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS client;
+
+CREATE TABLE client (
+    id   BIGINT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+   name  VARCHAR(255) NOT NULL,
+    first_name  VARCHAR(255) ,
+       last_name  VARCHAR(255) ,
+);
