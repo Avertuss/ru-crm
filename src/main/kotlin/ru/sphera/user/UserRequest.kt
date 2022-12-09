@@ -3,15 +3,14 @@ package ru.sphera.user
 import io.micronaut.serde.annotation.Serdeable
 import java.time.OffsetDateTime
 @Serdeable
-data class UserRequest(var id: Long?,
-                       val username: String,
-                       val password: String,
+data class UserRequest(var username: String,
+                       var password: String,
                        var isEnabled: Boolean,
-                       val roles: Set<RoleEntity>)
+                       var roleIds: Set<Long>)
 {
     open fun toUserEntity():UserEntity
     {
-        return UserEntity(id,null, OffsetDateTime.now(),username,password,isEnabled,roles)
+        return UserEntity(null,null, OffsetDateTime.now(),username,password,isEnabled,null)
     }
 
 }

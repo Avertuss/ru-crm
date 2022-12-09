@@ -14,25 +14,26 @@ import java.time.OffsetDateTime
 @MappedEntity("USER")
 data class UserEntity (
     @field:Id
-    @field:GeneratedValue(GeneratedValue.Type.AUTO) var id: Long?,
+    @field:GeneratedValue(GeneratedValue.Type.AUTO)
+    var id: Long?,
     @field:GeneratedValue
     @Column(updatable = false)
     var createdOn: OffsetDateTime?,
     @field:GeneratedValue
     var updatedOn: OffsetDateTime?,
-    val username: String,
-    val password: String,
+    var username: String,
+    var password: String?,
     var isEnabled: Boolean,
-    @Relation(value = Relation.Kind.MANY_TO_MANY, cascade = [Relation.Cascade.PERSIST])
+    @Relation(value = Relation.Kind.MANY_TO_MANY)
     @JoinTable(
     name = "USER_IN_ROLE",
     joinColumns = [JoinColumn(name = "USER_ID")],
     inverseJoinColumns = [JoinColumn(name = "ROLE_ID")])
-    val roles: Set<RoleEntity>
+    var role: Set<RoleEntity>?
 )
 {
     open fun toUserResponse():UserResponse
     {
-        return UserResponse(id,createdOn,updatedOn,username,password,isEnabled,roles)
+        return UserResponse(id,createdOn,updatedOn,username,isEnabled,role!!)
     }
 }

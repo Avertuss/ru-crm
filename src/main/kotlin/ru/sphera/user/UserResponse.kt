@@ -8,7 +8,6 @@ data class UserResponse(
     var createdOn: OffsetDateTime?,
     var updatedOn: OffsetDateTime?,
     val username: String,
-    val password: String,
     var isEnabled: Boolean,
     val roles: Set<RoleEntity>
 )

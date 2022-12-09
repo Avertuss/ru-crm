@@ -3,6 +3,7 @@ package ru.sphera.user
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
 import io.micronaut.data.annotation.MappedEntity
+import io.micronaut.data.annotation.Relation
 import io.micronaut.data.jdbc.annotation.JoinColumn
 import io.micronaut.data.jdbc.annotation.JoinTable
 import io.micronaut.serde.annotation.Serdeable
@@ -20,9 +21,6 @@ data class RoleEntity(
     @field:GeneratedValue
     var updatedOn: OffsetDateTime?,
     var name: String,
-    @JoinTable(
-        name = "USER_IN_ROLE",
-        joinColumns = [JoinColumn(name = "ROLE_ID")],
-        inverseJoinColumns = [JoinColumn(name = "USER_ID")])
-    var users : Set<UserEntity>
+  //  @Relation(value = Relation.Kind.MANY_TO_MANY, mappedBy = "role")
+  //  var user : Set<UserEntity>
 )
