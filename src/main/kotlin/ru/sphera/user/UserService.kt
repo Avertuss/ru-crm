@@ -25,10 +25,14 @@ class UserService {
 
     fun getById(id: Long): UserResponse {
         var user: Optional<UserEntity> = userRepository.findById(id);
-
         return user.get().toUserResponse();
     }
-
+    fun getByLoginAndPassword(login : String, password: String): Optional<UserEntity>
+    {
+        return userRepository.find(login, password);
+     /*   var user: Optional<UserEntity> =
+        return user.get()*/
+    }
     fun delete(id: Long) {
         userRepository.deleteById(id);
     }

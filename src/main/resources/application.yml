@@ -9,7 +9,10 @@ micronaut:
             secret:
               generator:
                 secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
-#                jws-algorithm: HS256
+                jws-algorithm: HS256
+              refresh-token:
+                secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+
 pem:
   path: /home/user/rsa-2048bit-key-pair.pem
 netty:

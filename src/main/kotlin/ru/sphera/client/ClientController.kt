@@ -9,7 +9,7 @@ import io.micronaut.security.rules.SecurityRule
 import javax.validation.Valid
 
 @Controller("/client")
-@Secured(SecurityRule.IS_ANONYMOUS)
+@Secured(SecurityRule.IS_AUTHENTICATED)
 open class ClientController(var service: ClientService) {
 
     @Get
@@ -25,6 +25,7 @@ open class ClientController(var service: ClientService) {
 
     @Post
     @Produces(MediaType.APPLICATION_JSON)
+
     open fun save(@Body client: ClientRequest): ClientResponse {
         return service.save(client);
     }

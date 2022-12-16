@@ -21,4 +21,7 @@ interface UserRepository : CrudRepository<UserEntity, Long> {
 
     @Join(value = "role", type = Join.Type.FETCH)
     override fun findById(id: Long): Optional<UserEntity>
+
+    @Join(value = "role", type = Join.Type.FETCH)
+    fun find(username : String, password : String): Optional<UserEntity>
 }
