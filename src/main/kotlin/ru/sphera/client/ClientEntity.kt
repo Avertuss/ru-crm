@@ -4,13 +4,8 @@ import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
 import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.data.annotation.Relation
-import io.micronaut.data.jdbc.annotation.ColumnTransformer
-import io.micronaut.data.jdbc.annotation.JoinColumn
-import io.micronaut.data.jdbc.annotation.JoinTable
 import io.micronaut.serde.annotation.Serdeable
 import jakarta.persistence.Column
-import jakarta.persistence.ManyToOne
-import ru.sphera.core.BaseEntity
 import ru.sphera.dictionary.client.ClientStatusEntity
 import java.time.OffsetDateTime
 

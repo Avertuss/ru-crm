@@ -9,11 +9,12 @@ import io.micronaut.security.rules.SecurityRule
 
 
 @Controller("/user")
-@Secured(SecurityRule.IS_ANONYMOUS)
+@Secured(SecurityRule.IS_AUTHENTICATED)
 class UserController(var service: UserService) {
 
 
     @Get
+
     open fun getAll(): List<UserResponse> {
         return service.getAll();
     }

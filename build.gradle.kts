@@ -36,7 +36,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("com.h2database:h2")
-    annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    //annotationProcessor("io.micronaut.data:micronaut-data-processor")
+
     compileOnly("jakarta.persistence:jakarta.persistence-api:3.0.0")
     compileOnly("com.h2database:h2")
    // runtimeOnly()
