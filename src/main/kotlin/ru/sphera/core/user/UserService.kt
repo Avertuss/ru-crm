@@ -1,7 +1,9 @@
-package ru.sphera.user
+package ru.sphera.core.user
 
 import jakarta.inject.Inject
 import ru.sphera.core.UserManager
+import ru.sphera.core.role.RoleEntity
+import ru.sphera.core.role.RoleRepository
 import java.time.OffsetDateTime
 import java.util.*
 
@@ -16,10 +18,6 @@ class UserService {
     lateinit var userManager: UserManager
 
     fun getAll(): List<UserResponse> {
-        /*
-        return userRepository.findAll().map {
-            it.toUserResponse()
-        }*/
         return userManager.getAll().values.map { it.toUserResponse() }
     }
 

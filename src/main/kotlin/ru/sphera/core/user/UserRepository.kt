@@ -1,4 +1,4 @@
-package ru.sphera.user
+package ru.sphera.core.user
 
 import io.micronaut.data.annotation.Join
 import io.micronaut.data.jdbc.annotation.JdbcRepository

@@ -1,8 +1,7 @@
 package ru.sphera.auth
 
 import io.micronaut.security.authentication.UsernamePasswordCredentials
-import ru.sphera.user.UserResponse
-import ru.sphera.user.UserService
+import ru.sphera.core.user.UserService
 
 class AuthService(var userService: UserService) {
 

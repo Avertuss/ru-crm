@@ -29,6 +29,12 @@ class ClientService {
         entity = clientRepository.save(entity);
         return entity.toClientReponse()
     }
+    open fun delete(id:Long):ClientResponse
+    {
+        var clientEntity: ClientEntity =  clientRepository.findById(id).get();
+        clientRepository.deleteById(id);
+        return clientEntity.toClientReponse();
+    }
     open fun update(id:Long,clientDto: ClientRequest):ClientResponse
     {
         var entityStatus = clientStatusRepository.findById(clientDto.status)
@@ -42,6 +48,5 @@ class ClientService {
         entityClientOld.phoneCode = entityClientNew.phoneCode
         entityClientOld.updatedOn = OffsetDateTime.now()
         return clientRepository.update(entityClientOld).toClientReponse()
-
     }
 }

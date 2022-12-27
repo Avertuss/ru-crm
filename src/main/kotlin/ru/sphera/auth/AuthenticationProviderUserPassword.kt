@@ -9,7 +9,7 @@ import jakarta.inject.Singleton
 import org.reactivestreams.Publisher
 import reactor.core.publisher.Flux
 import reactor.core.publisher.FluxSink
-import ru.sphera.user.UserService
+import ru.sphera.core.user.UserService
 
 @Singleton
 class AuthenticationProviderUserPassword : AuthenticationProvider {
@@ -27,7 +27,8 @@ class AuthenticationProviderUserPassword : AuthenticationProvider {
                 emitter.error(AuthenticationResponse.exception())
             } else {
                 var userEntity = optionUserEntity.get();
-                var roles = userEntity.role?.map { it.name };
+                var roles = HashSet<String>();
+                userEntity.role?.forEach { it.access?.forEach { access -> roles.add(access.name) } };
                 emitter.next(AuthenticationResponse.success(authenticationRequest.identity as String, roles))
                 emitter.complete()
             }

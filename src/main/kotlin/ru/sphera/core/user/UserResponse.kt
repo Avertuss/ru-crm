@@ -1,6 +1,7 @@
-package ru.sphera.user
+package ru.sphera.core.user
 
 import io.micronaut.serde.annotation.Serdeable
+import ru.sphera.core.role.RoleEntity
 import java.time.OffsetDateTime
 @Serdeable
 data class UserResponse(

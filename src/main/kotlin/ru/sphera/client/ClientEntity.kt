@@ -29,6 +29,6 @@ data class ClientEntity(
 ) {
     open fun toClientReponse():ClientResponse
     {
-        return ClientResponse(id,createdOn,updatedOn!!, firstName,lastName,phoneCode,phone,email, status.toClientStatusDto())
+        return ClientResponse(id,createdOn,updatedOn, firstName,lastName,phoneCode,phone,email, status.toClientStatusDto())
     }
 }

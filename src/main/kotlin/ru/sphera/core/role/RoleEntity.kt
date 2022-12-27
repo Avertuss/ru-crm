@@ -1,5 +1,4 @@
-package ru.sphera.user
-
+package ru.sphera.core.role
 
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
@@ -8,33 +7,31 @@ import io.micronaut.data.annotation.Relation
 import io.micronaut.data.jdbc.annotation.JoinColumn
 import io.micronaut.data.jdbc.annotation.JoinTable
 import io.micronaut.serde.annotation.Serdeable
-
 import java.time.OffsetDateTime
 
 @Serdeable
-@MappedEntity("USER")
-data class UserEntity(
+
+@MappedEntity("ROLE")
+data class RoleEntity(
     @field:Id
     @field:GeneratedValue
     var id: Long?,
     @field:GeneratedValue
-    //@Column(updatable = false)
     var createdOn: OffsetDateTime?,
     @field:GeneratedValue
     var updatedOn: OffsetDateTime?,
-    var username: String,
-    var password: String?,
-    var isEnabled: Boolean,
+    var name: String,
     @Relation(value = Relation.Kind.MANY_TO_MANY)
     @JoinTable(
-        name = "USER_IN_ROLE",
-        joinColumns = [JoinColumn(name = "USER_ID")],
-        inverseJoinColumns = [JoinColumn(name = "ROLE_ID")]
+        name = "ROLE_ACCESS_OBJECT",
+        joinColumns = [JoinColumn(name = "ROLE_ID")],
+        inverseJoinColumns = [JoinColumn(name = "ACCESS_OBJECT_ID")]
     )
-    var role: Set<RoleEntity>?
-) {
-
-    open fun toUserResponse(): UserResponse {
-        return UserResponse(id, createdOn, updatedOn, username, isEnabled, role!!)
+    var access: Set<AccessObjectEntity>?
+)
+{
+    open fun toRoleResponse():RoleResponse
+    {
+        return RoleResponse(id!!,createdOn!!,updatedOn,name, access?.map{ it.toAccessObjectResponse() }?.toSet())
     }
 }

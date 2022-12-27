@@ -1,4 +1,4 @@
-package ru.sphera.user
+package ru.sphera.core.user
 
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
@@ -14,7 +14,6 @@ class UserController(var service: UserService) {
 
 
     @Get
-
     open fun getAll(): List<UserResponse> {
         return service.getAll();
     }

@@ -2,9 +2,9 @@ package ru.sphera.core
 
 import io.micronaut.transaction.SynchronousTransactionManager
 import jakarta.inject.Singleton
-import ru.sphera.user.RoleEntity
-import ru.sphera.user.UserEntity
-import ru.sphera.user.UserRequest
+import ru.sphera.core.role.RoleEntity
+import ru.sphera.core.user.UserEntity
+import ru.sphera.core.user.UserRequest
 import java.sql.Array
 import java.sql.Connection
 import java.sql.ResultSet
