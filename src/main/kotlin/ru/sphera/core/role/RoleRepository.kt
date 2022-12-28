@@ -17,9 +17,13 @@ interface RoleRepository : CrudRepository<RoleEntity, Long> {
     @Query("DELETE FROM USER_IN_ROLE WHERE USER_ID = :userId")
     fun deleteRelationRoleByUserId(userId : Long)
 
+    @Query("DELETE FROM USER_IN_ROLE WHERE ROLE_ID = :roleId")
+    fun deleteRelationRoleByRoleId(roleId : Long)
+
     @Join(value = "access", type = Join.Type.LEFT)
     override fun findById(id: Long): Optional<RoleEntity>
 
     @Join(value = "access", type = Join.Type.LEFT_FETCH)
     override fun findAll(): Set<RoleEntity>
+
 }

@@ -22,15 +22,14 @@ class AuthenticationProviderUserPassword : AuthenticationProvider {
     ): Publisher<AuthenticationResponse> {
         return Flux.create({ emitter: FluxSink<AuthenticationResponse> ->
             var password = authenticationRequest.secret as String
-            var optionUserEntity = userService.getByLoginAndPassword(authenticationRequest.identity as String, password)
-            if (optionUserEntity.isEmpty) {
-                emitter.error(AuthenticationResponse.exception())
-            } else {
-                var userEntity = optionUserEntity.get();
+            var userEntity = userService.getByLoginAndPassword(authenticationRequest.identity as String, password).get()
+            if (userEntity.isEnabled) {
                 var roles = HashSet<String>();
                 userEntity.role?.forEach { it.access?.forEach { access -> roles.add(access.name) } };
                 emitter.next(AuthenticationResponse.success(authenticationRequest.identity as String, roles))
                 emitter.complete()
+            } else {
+                emitter.error(AuthenticationResponse.exception())
             }
         }, FluxSink.OverflowStrategy.ERROR)
     }

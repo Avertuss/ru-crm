@@ -4,7 +4,7 @@ import io.micronaut.serde.annotation.Serdeable
 import java.time.OffsetDateTime
 @Serdeable
 data class UserRequest(var username: String,
-                       var password: String,
+                       var password: String?,
                        var isEnabled: Boolean,
                        var roleIds: Set<Long>)
 {

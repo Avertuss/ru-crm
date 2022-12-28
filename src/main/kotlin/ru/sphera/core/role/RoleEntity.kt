@@ -21,7 +21,7 @@ data class RoleEntity(
     @field:GeneratedValue
     var updatedOn: OffsetDateTime?,
     var name: String,
-    @Relation(value = Relation.Kind.MANY_TO_MANY)
+    @Relation(value = Relation.Kind.MANY_TO_MANY, cascade =[Relation.Cascade.ALL] )
     @JoinTable(
         name = "ROLE_ACCESS_OBJECT",
         joinColumns = [JoinColumn(name = "ROLE_ID")],
